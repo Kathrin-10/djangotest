@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+    <head>
+        <title>{% block title %}Chat Application{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link rel="icon" href="{% static 'favico.png' %}" type="image/x-icon">
+    </head>
+    <body>
+        <div class="container">
+            <div class="body-block">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

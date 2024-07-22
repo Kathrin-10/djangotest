@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Chat{% endblock %}
+{% load static %}
+{% block body %}
+<div id="chat-container">
+    <div id="username-container">
+        <a href="{% url 'index' %}">
+            <img src="{% static 'images/home-icon.png' %}" alt="Home">
+        </a>
+        <h2>{{ friend.user }}</h2>
+    </div>
+    <div id="chat-box">
+        {% for message in messages %}
+        <div class="message {% if message.sender == request.user %}sent{% else %}received{% endif %}" id="message-{{ message.id }}">
+            <p>{{ message.text }}</p>
+            <button onclick="deleteMessage({{ message.id }})">Del</button>
+        </div>
+        {% endfor %}
+    </div>
+    
+        <form id="message-input" method="post">
+            {% csrf_token %}
+            <input type="text" name="message" placeholder="Type a message">
+            <button type="submit" class="icon-button">
+                <img src="{% static 'images/send-icon.png' %}" alt="Send">
+            </button>
+            <button type="button" class="icon-button">
+                <img src="{% static 'images/voice-icon.png' %}" alt="Voice Message">
+            </button>
+            <button type="button" class="icon-button">
+                <img src="{% static 'images/attach-icon.png' %}" alt="Attachment">
+            </button>
+        </form>
+
+    
+</div>
+<script src="{% static 'js/chat.js' %}"></script>
+{% endblock %}

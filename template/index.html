@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Index{% endblock %}
+
+{% block body %}
+<div class="index-container">
+    <div id="title-bar">
+        <h2>Text your Friends</h2>
+    </div>
+    <div id="user-container">
+        <div class="user-list">
+            {% for friend in friends %}
+            <div class="user-item">
+                <span>{{ friend.user }}</span>
+                <a href="{% url 'chat' friend.id %}" class="chat-button">Chat</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
